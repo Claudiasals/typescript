@@ -7,7 +7,7 @@ Definisci un'interfaccia Todo con le seguenti proprietà:
 - completed (boolean). */
 
 // Scrivo la forma dell'oggetto in ts
-interface Todo {
+export interface Todo {
     id: number;
     title: string;
     completed: boolean;
