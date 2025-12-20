@@ -11,6 +11,8 @@ e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
 function addTodo(title: string): Todo {
+// title come parametro xke è l’unico valore che l’utente deve fornire, 
+// perché ogni Todo ha un titolo diverso che imposterà l'utente
 
     const newTodo: Todo = {
         id: Date.now(), // genera un id unico basato sul timestamp corrente

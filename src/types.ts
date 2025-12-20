@@ -15,3 +15,15 @@ export interface Todo {
 
 
 
+/* Creare un'Interfaccia Utente
+In types.ts, definisci un'interfaccia User con le seguenti proprietà: 
+id (number), 
+name (string), 
+email (string, opzionale).
+*/
+
+export interface User {
+    id: number;
+    name: string,
+    email?: string; // il ? indica che la proprietà è opzionale
+}
