@@ -24,5 +24,30 @@ function addTodo(title: string): Todo {
 return newTodo;
 }
 
-addTodo("Nuuovo todo");
+//? funzione per abbinare user e todo (serve in previsione della creazione del database?)
+/* - impostiamo i parametro todoId (cioè l'id di un todo specifico creato dall'utente)
+- gli diciamo di scorrere i todo (t.id) e di trovare quello con todoId (xke la funz. 
+conosce solo l'id)
+- ora che abbiamo preso il todo */
+function assignTodoToUser(todoId: number, userId: number): void {
+    const todo = todos.find(t => t.id === todoId); 
+    // Cerco nell’array "todos" l’oggetto che ha un id uguale all'id (todoId) passato alla funzione.
+    if (todo) { // se hai trovato un todo con quell'id
+        todo.userId = userId; /* prendi l’oggetto Todo che hai trovato e 
+        imposta la sua proprietà "userId?" uguale all’"id" dell’utente che vogliamo associare. */
+    }
+}
+/* 
+La funzione modifica direttamente l’oggetto Todo nell’array todos
+Non serve restituire nulla, perché l’aggiornamento avviene “in place”.
+Quindi si usa : void per indicare che non c’è return utile.
+
+“In place” significa che l’oggetto originale viene modificato 
+direttamente, senza creare una nuova copia.
+*/
+
+//? TEST ASSEGNAZIONE UTENTE
+const newTodo = addTodo("Nuovo todo");
+const userId = 101; // scegli un numero a caso per simulare un utente
+assignTodoToUser(newTodo.id, userId); // todoId in console.log
 console.log(todos);
