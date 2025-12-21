@@ -15,7 +15,8 @@ function addTodo(title: string): Todo {
 // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
     const newTodo: Todo = {
-        id: Date.now(), // genera un id unico basato sul timestamp corrente
+        id: Date.now() + Math.floor(Math.random() * 1000), 
+        // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
         completed: false // inizialmente non completato
     };
@@ -48,6 +49,22 @@ direttamente, senza creare una nuova copia.
 
 //? TEST ASSEGNAZIONE UTENTE
 const newTodo = addTodo("Nuovo todo");
+const newTodo2 = addTodo("Nuovo todo 2");
+const newTodo3 = addTodo("Nuovo todo 3");
 const userId = 101; // scegli un numero a caso per simulare un utente
 assignTodoToUser(newTodo.id, userId); // todoId in console.log
+assignTodoToUser(newTodo2.id, userId); // todoId in console.log
+assignTodoToUser(newTodo3.id, userId); // todoId in console.log
+
 console.log(todos);
+
+
+//@ Funzione per ottenere i Todo di un Utente
+function getUserTodos(userId: number) {
+return todos.filter(todo => todo.userId === userId);
+// filter ci restituisce un array e cercando tutti i todo con 
+// l'userId di riferimento creiamo l'array con tt i todos dell'utente
+}
+
+//? verifica
+console.log(getUserTodos(userId)); // chiamo la funzione passando userId(101)
