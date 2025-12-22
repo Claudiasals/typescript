@@ -68,3 +68,20 @@ return todos.filter(todo => todo.userId === userId);
 
 //? verifica
 console.log(getUserTodos(userId)); // chiamo la funzione passando userId(101)
+
+//@ Funzione error con msg cm parametro e never x err
+function error(message: string): never {
+    throw new Error(message);
+      
+}     try {
+    error("Qualcosa è andato storto!");
+  } catch (e: any) {
+    console.log("Errore catturato:", e.message);
+  }
+  
+  console.log("Continua da qui");
+
+/* throw new Error(message) interrompe immediatamente 
+l’esecuzione della funzione. La funzione non restituisce 
+mai un valore come farebbe un return. L’oggetto 
+Error viene “lanciato” al runtime, non viene passato come valore di ritorno */
