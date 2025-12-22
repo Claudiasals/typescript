@@ -81,7 +81,17 @@ function error(message: string): never {
   
   console.log("Continua da qui");
 
-/* throw new Error(message) interrompe immediatamente 
+/* 
+//# A cosa serve never?
+Indicare funzioni che non restituiscono mai un valore
+Es: funzioni che lanciano sempre un errore o che non terminano mai
+TypeScript sa così che il chiamante non potrà mai ottenere un valore 
+da quella funzione.
+
+throw new Error(message) interrompe immediatamente 
 l’esecuzione della funzione. La funzione non restituisce 
 mai un valore come farebbe un return. L’oggetto 
-Error viene “lanciato” al runtime, non viene passato come valore di ritorno */
+Error viene “lanciato” al runtime, non viene passato come valore di ritorno.
+
+try catch permettono di individuare l'errore e gestirlo proseguendo con il codice
+*/
