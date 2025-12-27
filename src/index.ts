@@ -1,6 +1,6 @@
 import type { Todo } from './types.js';
 
-const todos: Todo[] = []; 
+const todos: Todo[] = [];
 // Todo[] = “lista di Todo” , cioè gli diciamo che sarà formato da più di un Todo
 // = [] inizializzo la variabile con un array vuoto ( com lista vuota)
 
@@ -11,18 +11,18 @@ e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
 function addTodo(title: string): Todo {
-// title come parametro xke è l’unico valore che l’utente deve fornire, 
-// perché ogni Todo ha un titolo diverso che imposterà l'utente
+    // title come parametro xke è l’unico valore che l’utente deve fornire, 
+    // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
     const newTodo: Todo = {
-        id: Date.now() + Math.floor(Math.random() * 1000), 
+        id: Date.now() + Math.floor(Math.random() * 1000),
         // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
         completed: false // inizialmente non completato
     };
 
     todos.push(newTodo); // Aggiunge newTodo alla fine dell’array todos
-return newTodo;
+    return newTodo;
 }
 
 //? funzione per abbinare user e todo (serve in previsione della creazione del database?)
@@ -31,7 +31,7 @@ return newTodo;
 conosce solo l'id)
 - ora che abbiamo preso il todo */
 function assignTodoToUser(todoId: number, userId: number): void {
-    const todo = todos.find(t => t.id === todoId); 
+    const todo = todos.find(t => t.id === todoId);
     // Cerco nell’array "todos" l’oggetto che ha un id uguale all'id (todoId) passato alla funzione.
     if (todo) { // se hai trovato un todo con quell'id
         todo.userId = userId; /* prendi l’oggetto Todo che hai trovato e 
@@ -61,9 +61,9 @@ console.log(todos);
 
 //@ Funzione per ottenere i Todo di un Utente
 function getUserTodos(userId: number) {
-return todos.filter(todo => todo.userId === userId);
-// filter ci restituisce un array e cercando tutti i todo con 
-// l'userId di riferimento creiamo l'array con tt i todos dell'utente
+    return todos.filter(todo => todo.userId === userId);
+    // filter ci restituisce un array e cercando tutti i todo con 
+    // l'userId di riferimento creiamo l'array con tt i todos dell'utente
 }
 
 //? verifica
@@ -72,14 +72,14 @@ console.log(getUserTodos(userId)); // chiamo la funzione passando userId(101)
 //@ Funzione error con msg cm parametro e never x err
 function error(message: string): never {
     throw new Error(message);
-      
-}     try {
+
+} try {
     error("Qualcosa è andato storto!");
-  } catch (e: any) {
+} catch (e: any) {
     console.log("Errore catturato:", e.message);
-  }
-  
-  console.log("Continua da qui");
+}
+
+console.log("Continua da qui");
 
 /* 
 //# A cosa serve never?
@@ -95,3 +95,18 @@ Error viene “lanciato” al runtime, non viene passato come valore di ritorno.
 
 try catch permettono di individuare l'errore e gestirlo proseguendo con il codice
 */
+
+//@ Funzione che prende input unknown
+function parseInput(input: unknown): string {
+    // : string --> x dire che la funzione può restituire solo una stringa 
+    // con unknown bisogna 
+    if (typeof input === "string") {
+        return input;
+
+    } else if (typeof input === "number") {
+        return input.toString();
+
+    } else { 
+        error("Tipo di input non valido")
+}
+}
