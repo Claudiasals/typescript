@@ -4,6 +4,7 @@ export interface Todo {
     title: string;
     completed: boolean;
     userId?: number; 
+    metadata?: any;
 }
 
 // interfaccia dell'user

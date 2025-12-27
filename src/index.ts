@@ -10,7 +10,7 @@ e restituisce un nuovo oggetto Todo con un id unico
 e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
-function addTodo(title: string): Todo {
+function addTodo(title: string, metadata?: any): Todo { // specifico i parametri
     // title come parametro xke è l’unico valore che l’utente deve fornire, 
     // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
@@ -18,14 +18,15 @@ function addTodo(title: string): Todo {
         id: Date.now() + Math.floor(Math.random() * 1000),
         // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
-        completed: false // inizialmente non completato
+        completed: false, // inizialmente non completato
+        metadata: metadata // assegno il valore della proprietà metadata al parametro metadata
     };
 
     todos.push(newTodo); // Aggiunge newTodo alla fine dell’array todos
     return newTodo;
 }
 
-//? funzione per abbinare user e todo (serve in previsione della creazione del database?)
+//@ funzione per abbinare user e todo (serve in previsione della creazione del database?)
 /* - impostiamo i parametro todoId (cioè l'id di un todo specifico creato dall'utente)
 - gli diciamo di scorrere i todo (t.id) e di trovare quello con todoId (xke la funz. 
 conosce solo l'id)
@@ -47,7 +48,7 @@ Quindi si usa : void per indicare che non c’è return utile.
 direttamente, senza creare una nuova copia.
 */
 
-//? TEST ASSEGNAZIONE UTENTE
+//@ TEST ASSEGNAZIONE UTENTE
 const newTodo = addTodo("Nuovo todo");
 const newTodo2 = addTodo("Nuovo todo 2");
 const newTodo3 = addTodo("Nuovo todo 3");
@@ -66,7 +67,7 @@ function getUserTodos(userId: number) {
     // l'userId di riferimento creiamo l'array con tt i todos dell'utente
 }
 
-//? verifica
+// verifica
 console.log(getUserTodos(userId)); // chiamo la funzione passando userId(101)
 
 //@ Funzione error con msg cm parametro e never x err
@@ -110,3 +111,13 @@ function parseInput(input: unknown): string {
         error("Tipo di input non valido")
 }
 }
+
+//# tipo ANY: 
+// è un tipo speciale che diaattiva il controllo dei tpi.
+// serve quando non conosci a priori il tipo di una variabile 
+// o vuoi permettere di assegnarci qualsiasi valore.
+// Usare any riduce la sicurezza dei tipi e va usato solo quando necessario.
+
+//# OPERATORE DI OPZIONALITA' "?" 
+// Serve per dichiarare una proprietà opzionale. 
+// Significa che l’oggetto può avere o non avere quella proprietà.
