@@ -10,7 +10,7 @@ e restituisce un nuovo oggetto Todo con un id unico
 e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
-function addTodo(title: string, metadata?: any): Todo { // specifico i parametri
+function addTodo(title: string) : Todo { // specifico i parametri
     // title come parametro xke è l’unico valore che l’utente deve fornire, 
     // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
@@ -19,7 +19,6 @@ function addTodo(title: string, metadata?: any): Todo { // specifico i parametri
         // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
         completed: false, // inizialmente non completato
-        metadata: metadata // assegno il valore della proprietà metadata al parametro metadata
     };
 
     todos.push(newTodo); // Aggiunge newTodo alla fine dell’array todos
@@ -101,16 +100,20 @@ try catch permettono di individuare l'errore e gestirlo proseguendo con il codic
 function parseInput(input: unknown): string {
     // : string --> x dire che la funzione può restituire solo una stringa 
     // con unknown bisogna 
-    if (typeof input === "string") {
+    if (typeof input === "string") { // branch 1
         return input;
 
-    } else if (typeof input === "number") {
+    } else if (typeof input === "number") { // branch 2
         return input.toString();
 
     } else { 
-        error("Tipo di input non valido")
+        error("Tipo di input non valido") // branch 3
 }
 }
+//# BRANCH:
+/* In Typescript un branch è ogni possibile percorso di esecuzione 
+dentro una struttura condizionale (if, else if, else).
+*/
 
 //# tipo ANY: 
 // è un tipo speciale che diaattiva il controllo dei tpi.
@@ -118,6 +121,3 @@ function parseInput(input: unknown): string {
 // o vuoi permettere di assegnarci qualsiasi valore.
 // Usare any riduce la sicurezza dei tipi e va usato solo quando necessario.
 
-//# OPERATORE DI OPZIONALITA' "?" 
-// Serve per dichiarare una proprietà opzionale. 
-// Significa che l’oggetto può avere o non avere quella proprietà.
