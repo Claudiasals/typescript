@@ -10,7 +10,7 @@ e restituisce un nuovo oggetto Todo con un id unico
 e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
-function addTodo(title: string) : Todo { // specifico i parametri
+function addTodo(title: string, metadata2: string | object) : Todo { // specifico i parametri
     // title come parametro xke è l’unico valore che l’utente deve fornire, 
     // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
@@ -19,6 +19,7 @@ function addTodo(title: string) : Todo { // specifico i parametri
         // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
         completed: false, // inizialmente non completato
+        metadata2: metadata2
     };
 
     todos.push(newTodo); // Aggiunge newTodo alla fine dell’array todos
@@ -110,6 +111,7 @@ function parseInput(input: unknown): string {
         error("Tipo di input non valido") // branch 3
 }
 }
+
 //# BRANCH:
 /* In Typescript un branch è ogni possibile percorso di esecuzione 
 dentro una struttura condizionale (if, else if, else).
@@ -121,3 +123,8 @@ dentro una struttura condizionale (if, else if, else).
 // o vuoi permettere di assegnarci qualsiasi valore.
 // Usare any riduce la sicurezza dei tipi e va usato solo quando necessario.
 
+//# Union Type (|):
+/* Un Union Type è un tipo che può essere uno oppure un altro.
+Il simbolo | ("oppure" ce definisce il union type) significa: questa 
+variabile può essere uno di questi tipi. 
+*/
