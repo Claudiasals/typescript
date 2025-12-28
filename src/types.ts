@@ -12,6 +12,7 @@ export interface User {
     id: number;
     name: string,
     email?: string; // il ? indica che la proprietà è opzionale
+    readonly todos: ReadonlyArray<Todo>;
 }
 
 //# OPERATORE DI OPZIONALITA' "?" 
