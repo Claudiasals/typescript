@@ -180,3 +180,17 @@ Pick<T, K>	Prende solo alcune proprietà K di T	`Pick<Todo, "title"
 Omit<T, K>	Esclude alcune proprietà K di T	Omit<Todo, "metadata">
 
 */
+
+//@ funzione che restituisce una tupla con titolo e stato
+
+function getTodoSummary(todo: Todo): [string, boolean] {
+    return [todo.title, todo.completed];
+}
+
+//# tupla:
+/* una tupla è un tipo speciale di array in cui ogni elemento 
+ha un tipo specifico e un ordine fisso. In altre parole:
+Un array normale può contenere valori di qualsiasi tipo, 
+oppure tutti dello stesso tipo, senza vincoli sull’ordine.
+Una tupla ti dice: “Il primo elemento sarà di questo tipo, 
+il secondo sarà di quest’altro tipo, e così via”. */
