@@ -196,14 +196,23 @@ Una tupla ti dice: “Il primo elemento sarà di questo tipo,
 il secondo sarà di quest’altro tipo, e così via”. */
 
 
-//@ funzione per creare progetto
-function createProject(users: User[] = [], todos: Todo[] = []): Project {
+//@ Funzione per creare un progetto
+/* La funzione createProject serve a inizializzare un nuovo progetto
+   con due liste: utenti (users) e Todo (todos). 
+   - users: array di User, opzionale, default è array vuoto []
+   - todos: array di Todo, opzionale, default è array vuoto []
+   La funzione restituisce un oggetto che rispetta l'interfaccia Project. */
+   function createProject(users: User[] = [], todos: Todo[] = []): Project {
     return {
-        users,
-        todos
+        users, // assegna la lista di utenti passata come parametro
+        todos  // assegna la lista di Todo passata come parametro
     };
 }
 
-// Esempio d'uso
+//# Esempio d'uso della funzione createProject
+/* Creiamo un nuovo progetto vuoto, passando array vuoti sia per utenti che per Todo.
+   Se volessimo, potremmo passare array popolati per avere subito un progetto con contenuti. */
 const myProject = createProject([], []);
+
+// Stampiamo in console il progetto appena creato
 console.log("Progetto creato:", myProject);
