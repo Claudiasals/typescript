@@ -49,9 +49,9 @@ direttamente, senza creare una nuova copia.
 */
 
 //@ TEST ASSEGNAZIONE UTENTE
-const newTodo = addTodo("Nuovo todo");
-const newTodo2 = addTodo("Nuovo todo 2");
-const newTodo3 = addTodo("Nuovo todo 3");
+const newTodo = addTodo("Nuovo todo", "ciao");
+const newTodo2 = addTodo("Nuovo todo 2", "secondo parametro");
+const newTodo3 = addTodo("Nuovo todo 3", "secondo parametro obbligatorio");
 const userId = 101; // scegli un numero a caso per simulare un utente
 assignTodoToUser(newTodo.id, userId); // todoId in console.log
 assignTodoToUser(newTodo2.id, userId); // todoId in console.log
@@ -127,4 +127,56 @@ dentro una struttura condizionale (if, else if, else).
 /* Un Union Type è un tipo che può essere uno oppure un altro.
 Il simbolo | ("oppure" ce definisce il union type) significa: questa 
 variabile può essere uno di questi tipi. 
+*/
+
+//@ funione per aggiornare parzialmente le proprietà di un ToDo
+
+/* Per aggiornare un Todo parzialmente utilizzo Partial<Todo> che rende tutte le 
+proprietà opzionali e permette di passare solo e proprietà che vogliamo modificare */
+const updates: Partial<Todo> = { title: "Nuovo titolo" };
+// posso aggiornare solo "title", senza dover specificare id o completed
+
+
+function updateTodo(todoId: number, updates: Partial<Todo>): Todo | undefined {
+    /* todoId: number è il parametro obbligatorio x l’ID del Todo che vogliamo aggiornare.
+    / updates: Partial<Todo> è l'oggetto con le proprietà da aggiornare (tutte opzionali).
+    / : Todo | undefined → tipo di ritorno della funzione: restituisce il Todo aggiornato 
+    oppure undefined se non esiste. */
+    const todo = todos.find(t => t.id === todoId);
+    if (!todo) return undefined; 
+    Object.assign(todo, updates);
+    return todo; // restituisce l'oggetto todo aggiornato
+}
+
+    //# Object.assign
+    /* è una funzione built-in di JavaScript che serve a copiare proprietà 
+    da uno o più oggetti dentro un altro oggetto.
+    In questo caso: serve per aggiornare un oggetto esistente senza crearne uno nuovo
+    Copiando tutte le proprietà di updates dentro todo e solo le 
+    proprietà presenti in updates vengono aggiornate.
+    */
+    //! Nota: Object.assign modifica l’oggetto originale, 
+    //! quindi l’array todos viene aggiornato “in place” 
+
+    //# in place: 
+    /* significa che modifichi l’oggetto originale direttamente, senza crearne una copia nuova
+    Quando fai un’operazione in place:
+    l’oggetto è lo stesso in memoria
+    cambiano solo alcune sue proprietà
+    non viene creato un nuovo oggetto */
+
+
+//# Utility Types
+/* In TypeScript esistono dei tipi speciali predefiniti chiamati utility types, 
+che ti permettono di modificare o derivare altri tipi senza riscrivere tutto.
+
+Esempi utili per questo esercizio:
+
+Utility Type	Cosa fa	Esempio
+Partial<T>	Rende tutte le proprietà di T opzionali	Partial<Todo>
+Required<T>	Rende tutte le proprietà obbligatorie	Required<Todo>
+Readonly<T>	Rende tutte le proprietà non modificabili	Readonly<Todo>
+Pick<T, K>	Prende solo alcune proprietà K di T	`Pick<Todo, "title"
+Omit<T, K>	Esclude alcune proprietà K di T	Omit<Todo, "metadata">
+
 */
