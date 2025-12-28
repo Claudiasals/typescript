@@ -1,4 +1,4 @@
-import type { Todo } from './types.js';
+import type { Todo, User, Project } from './types.js';
 
 const todos: Todo[] = [];
 // Todo[] = “lista di Todo” , cioè gli diciamo che sarà formato da più di un Todo
@@ -194,3 +194,16 @@ Un array normale può contenere valori di qualsiasi tipo,
 oppure tutti dello stesso tipo, senza vincoli sull’ordine.
 Una tupla ti dice: “Il primo elemento sarà di questo tipo, 
 il secondo sarà di quest’altro tipo, e così via”. */
+
+
+//@ funzione per creare progetto
+function createProject(users: User[] = [], todos: Todo[] = []): Project {
+    return {
+        users,
+        todos
+    };
+}
+
+// Esempio d'uso
+const myProject = createProject([], []);
+console.log("Progetto creato:", myProject);

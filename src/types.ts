@@ -32,3 +32,8 @@ di questa interfaccia e aggiungine altre.”
 Ci permettono di riutilizzare codice e tipi senza riscrivere tutto.
 */
 
+// interfaccia Project
+export interface Project {
+    users: User[];
+    todos: Todo[];
+}
