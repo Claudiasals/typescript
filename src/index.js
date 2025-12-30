@@ -48,6 +48,9 @@ var userId = 101; // scegli un numero a caso per simulare un utente
 assignTodoToUser(newTodo.id, userId); // todoId in console.log
 assignTodoToUser(newTodo2.id, userId); // todoId in console.log
 assignTodoToUser(newTodo3.id, userId); // todoId in console.log
+//# TEST MODIFICA STATUS TODO
+updateTodoStatus(newTodo.id, types_js_1.TodoStatus.InProgress);
+updateTodoStatus(newTodo2.id, types_js_1.TodoStatus.Completed);
 console.log(todos);
 //@ Funzione per ottenere i Todo di un Utente
 function getUserTodos(userId) {
