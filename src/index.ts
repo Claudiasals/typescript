@@ -5,12 +5,7 @@ const todos: Todo[] = [];
 // Todo[] = “lista di Todo” , cioè gli diciamo che sarà formato da più di un Todo
 // = [] inizializzo la variabile con un array vuoto ( com lista vuota)
 
-/* Aggiungere una Funzione per Aggiungere un Todo
-Crea una funzione addTodo che prende un titolo come parametro 
-e restituisce un nuovo oggetto Todo con un id unico 
-e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
-*/
-
+//@ Funzione per Aggiungere un Todo
 function addTodo(title: string, metadata2: string | object ) : Todo { // specifico i parametri
     // title come parametro xke è l’unico valore che l’utente deve fornire, 
     // perché ogni Todo ha un titolo diverso che imposterà l'utente
@@ -28,7 +23,7 @@ function addTodo(title: string, metadata2: string | object ) : Todo { // specifi
     return newTodo;
 }
 
-//@ funzione per abbinare user e todo (serve in previsione della creazione del database?)
+//@ funzione per abbinare user e todo
 /* - impostiamo i parametro todoId (cioè l'id di un todo specifico creato dall'utente)
 - gli diciamo di scorrere i todo (t.id) e di trovare quello con todoId (xke la funz. 
 conosce solo l'id)
@@ -50,7 +45,7 @@ Quindi si usa : void per indicare che non c’è return utile.
 direttamente, senza creare una nuova copia.
 */
 
-//@ TEST ASSEGNAZIONE UTENTE
+//# TEST ASSEGNAZIONE UTENTE
 const newTodo = addTodo("Nuovo todo", "ciao");
 const newTodo2 = addTodo("Nuovo todo 2", "secondo parametro");
 const newTodo3 = addTodo("Nuovo todo 3", "secondo parametro obbligatorio");
@@ -58,6 +53,10 @@ const userId = 101; // scegli un numero a caso per simulare un utente
 assignTodoToUser(newTodo.id, userId); // todoId in console.log
 assignTodoToUser(newTodo2.id, userId); // todoId in console.log
 assignTodoToUser(newTodo3.id, userId); // todoId in console.log
+
+//# TEST MODIFICA STATUS TODO
+updateTodoStatus(newTodo.id, TodoStatus.InProgress);
+updateTodoStatus(newTodo2.id, TodoStatus.Completed);
 
 console.log(todos);
 
@@ -219,3 +218,21 @@ const myProject = createProject([], []);
 // Stampiamo in console il progetto appena creato
 console.log("Progetto creato:", myProject);
 
+//@ funzione per modificare lo status dei todo
+function updateTodoStatus(
+    todoId: number,
+    status: TodoStatus
+  ): Todo | undefined { 
+      const todo = todos.find(t => t.id === todoId);
+    // cerca il todo con l'id richiesto,  
+    // find in automatico se non lo trova restituisce undefine
+      if (!todo) {
+          return undefined;
+      }
+  
+      todo.status = status;
+      /* aggiornamento in place
+      assegnamo un valore sicuro perché viene dall’enum */
+      return todo;
+  }
+  
