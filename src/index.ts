@@ -216,3 +216,4 @@ const myProject = createProject([], []);
 
 // Stampiamo in console il progetto appena creato
 console.log("Progetto creato:", myProject);
+
