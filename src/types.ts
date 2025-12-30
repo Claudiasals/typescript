@@ -49,7 +49,7 @@ nel codice. In pratica, un enum ti permette di dare nomi leggibili
 a valori fissi, così il codice diventa più chiaro e sicuro.
 */
 
-enum TodoStatus {
+export enum TodoStatus {
     Pending = "Pending", 
     InProgress = "InProgress",
     Completed = "Completed"

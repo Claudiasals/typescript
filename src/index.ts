@@ -1,4 +1,5 @@
 import type { Todo, User, Project } from './types.js';
+import { TodoStatus } from './types.js';
 
 const todos: Todo[] = [];
 // Todo[] = “lista di Todo” , cioè gli diciamo che sarà formato da più di un Todo
@@ -10,7 +11,7 @@ e restituisce un nuovo oggetto Todo con un id unico
 e completed impostato su false. Aggiungi il nuovo Todo all'array todos.
 */
 
-function addTodo(title: string, metadata2: string | object) : Todo { // specifico i parametri
+function addTodo(title: string, metadata2: string | object ) : Todo { // specifico i parametri
     // title come parametro xke è l’unico valore che l’utente deve fornire, 
     // perché ogni Todo ha un titolo diverso che imposterà l'utente
 
@@ -19,7 +20,8 @@ function addTodo(title: string, metadata2: string | object) : Todo { // specific
         // genera un id unico basato sul timestamp corrente ( Date.now) + numero casuale (Math.random)
         title: title, // titolo passato come parametro
         completed: false, // inizialmente non completato
-        metadata2: metadata2
+        metadata2: metadata2,
+        status: TodoStatus.Pending
     };
 
     todos.push(newTodo); // Aggiunge newTodo alla fine dell’array todos
